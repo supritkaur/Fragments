@@ -1,9 +1,11 @@
 package com.sk.fragments
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.FragmentContainerView
 
 class MainActivity : AppCompatActivity() {
@@ -11,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var frag :FragmentContainerView
     lateinit var ActivityInterface:ActivityInterface
     var s=0
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -24,11 +27,16 @@ class MainActivity : AppCompatActivity() {
             alertDialog.setTitle("color")
             alertDialog.setMessage("choose color")
             alertDialog.setPositiveButton("Red"){_,_->
-                frag.setBackgroundColor(R.id.Red)}
-            alertDialog.setNegativeButton("Blue"){_,_->
-                frag.setBackgroundColor(R.id.Blue)}
+                frag.setBackgroundResource(R.color.Red)
+                Toast.makeText(this,"Red clicked",Toast.LENGTH_SHORT).show()}
+            alertDialog.setNegativeButton("Green"){_,_->
+                frag.setBackgroundResource(R.color.Green)
+                Toast.makeText(this,"Green clicked",Toast.LENGTH_SHORT).show()}
             alertDialog.setNeutralButton("Purple"){_,_->
-                frag.setBackgroundColor(R.id.Purple)}
+                frag.setBackgroundResource(R.color.Purple)
+            Toast.makeText(this,"Purple clicked",Toast.LENGTH_SHORT).show()}
+
+            alertDialog.show()
 
             }
 
